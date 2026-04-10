@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .navbar h2 {
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background: #ffd700;
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #fff;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>My Django App</h2>
+        <div>
+            <a href="#">Home</a>
+            <a href="/books/">Books</a>
+            <a href="/authors/">Authors</a>
+            <a href="/contactus/">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div>
+            <h1>Welcome 🚀</h1>
+            <p>This is your Django default homepage</p>
+            <button class="btn">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2026 - Built with Django ❤️
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends 'books/base.html' %}
+
+{% block title %}
+Books
+{% endblock %}
+
+{% block content %}
+    <h1>All Books</h1>
+
+    <a href="{% url 'books:create' %}">Add New Book</a>
+
+    <hr>
+
+    {% if books %}
+        {% for book in books %}
+            <div style="border:1px solid #ccc; padding:15px; margin-bottom:15px;">
+
+                <h3>{{ book.title }}</h3>
+
+                {% if book.image %}
+                    <img src="{{ book.image.url }}" alt="{{ book.title }}" width="150">
+                {% endif %}
+
+                <p>{{ book.breif }}</p>
+                <p><strong>Pages:</strong> {{ book.no_of_page }}</p>
+                <p><strong>Price:</strong> {{ book.price }} EGP</p>
+
+                <a href="{% url 'books:show' book.id %}">View Details</a> |
+                <a href="{% url 'books:update' book.id %}">Edit</a> |
+                <a href="{% url 'books:delete' book.id %}">Delete</a>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No books found.</p>
+    {% endif %}
+
+{% endblock %}

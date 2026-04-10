@@ -1,0 +1,20 @@
+{% extends 'books/base.html' %}
+
+{% block title %}
+Update Book
+{% endblock %}
+
+{% block content %}
+    <h1>Update Book</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Update</button>
+    </form>
+
+    <br>
+
+    <a href="{% url 'books:show' book.id %}">Back</a>
+{% endblock %}

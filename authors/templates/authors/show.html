@@ -1,0 +1,27 @@
+{% extends 'books/base.html' %}
+
+{% block content %}
+<h1>{{ author.name }}</h1>
+
+<p>{{ author.email }}</p>
+<p>{{ author.bio }}</p>
+<p>{{ author.gender }}</p>
+
+<h3>Books:</h3>
+
+{% for book in author.books.all %}
+    <p>{{ book.title }}</p>
+{% empty %}
+    <p>No books for this author</p>
+{% endfor %}
+
+<a href="{% url 'authors:index' %}">Back</a>
+
+{% endblock %}
+
+<h3>Books:</h3>
+{% for book in author.books.all %}
+    <p>{{ book.title }}</p>
+{% empty %}
+    <p>No books for this author.</p>
+{% endfor %}

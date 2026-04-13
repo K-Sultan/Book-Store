@@ -4,53 +4,247 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Bookstore - Your Literary Haven{% endblock %}</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <style>
+        :root {
+            --brand: #0f766e;
+            --brand-dark: #134e4a;
+            --brand-soft: #ccfbf1;
+            --surface: rgba(255, 255, 255, 0.92);
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-soft: rgba(15, 118, 110, 0.12);
+            --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.08);
+        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-main);
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 30%),
+                radial-gradient(circle at top right, rgba(245, 158, 11, 0.16), transparent 26%),
+                linear-gradient(180deg, #f6fffd 0%, #eef7f6 45%, #f7fafc 100%);
+        }
+        .navbar {
+            background: rgba(15, 23, 42, 0.92) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.18);
         }
         .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
         }
-        .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 100px 0;
-            text-align: center;
+        .navbar .nav-link {
+            color: rgba(255, 255, 255, 0.82) !important;
+            font-weight: 500;
+            margin-right: 0.45rem;
+        }
+        .navbar .nav-link:hover,
+        .navbar .nav-link:focus {
+            color: #ffffff !important;
+        }
+        .page-shell {
+            padding: 3rem 0 4rem;
+        }
+        .page-hero {
+            background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(17, 94, 89, 0.86));
+            color: #fff;
+            border-radius: 28px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            inset: auto -80px -80px auto;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .page-hero p:last-child {
+            margin-bottom: 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            color: rgba(255, 255, 255, 0.82);
+            max-width: 650px;
+            line-height: 1.7;
+        }
+        .surface-card,
+        .card {
+            border: 1px solid var(--border-soft);
+            border-radius: 22px;
+            background: var(--surface);
+            box-shadow: var(--shadow-soft);
         }
         .card {
-            border: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+            box-shadow: 0 24px 45px rgba(15, 23, 42, 0.12);
+        }
+        .btn-brand {
+            background: var(--brand);
+            border-color: var(--brand);
+            color: #fff;
+        }
+        .btn-brand:hover,
+        .btn-brand:focus {
+            background: var(--brand-dark);
+            border-color: var(--brand-dark);
+            color: #fff;
+        }
+        .btn-soft {
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--brand-dark);
+            font-weight: 600;
+        }
+        .btn-soft:hover,
+        .btn-soft:focus {
+            background: #f8fffe;
+            color: var(--brand-dark);
+        }
+        .btn-outline-brand {
+            border-color: var(--brand);
+            color: var(--brand);
+        }
+        .btn-outline-brand:hover,
+        .btn-outline-brand:focus {
+            background: var(--brand);
+            color: #fff;
+        }
+        .badge-soft {
+            display: inline-block;
+            background: var(--brand-soft);
+            color: var(--brand-dark);
+            border-radius: 999px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .meta-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.55rem 0.85rem;
+            background: #f8fffe;
+            border: 1px solid var(--border-soft);
+            border-radius: 999px;
+            color: var(--text-main);
+            font-size: 0.92rem;
+            margin: 0.2rem 0.35rem 0.2rem 0;
+        }
+        .content-copy {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .detail-list dt {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .detail-list dd {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .book-cover,
+        .detail-cover {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #d1fae5, #fef3c7);
+        }
+        .book-cover {
+            height: 240px;
+        }
+        .detail-cover {
+            min-height: 320px;
+            max-height: 420px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+        .empty-state h3 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        form p {
+            margin-bottom: 1rem;
+        }
+        form label {
+            display: block;
+            margin-bottom: 0.45rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            border-radius: 14px;
+            padding: 0.8rem 0.95rem;
+            background: #fff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: rgba(15, 118, 110, 0.7);
+            box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.12);
+        }
+        form .helptext {
+            display: block;
+            margin-top: 0.4rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        form ul.errorlist {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0.5rem;
+            color: #b91c1c;
+            font-size: 0.92rem;
         }
         .footer {
-            background-color: #343a40;
-            color: white;
-            padding: 40px 0;
-            margin-top: 50px;
+            background: #111827;
+            color: rgba(255, 255, 255, 0.84);
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
         }
-        .btn-custom {
-            background-color: #667eea;
-            border-color: #667eea;
+        .footer a {
+            color: rgba(255, 255, 255, 0.84);
+            text-decoration: none;
         }
-        .btn-custom:hover {
-            background-color: #5a6fd8;
-            border-color: #5a6fd8;
+        .footer a:hover {
+            color: #fff;
+        }
+        @media (max-width: 767.98px) {
+            .page-shell {
+                padding-top: 1.5rem;
+            }
+            .page-hero {
+                padding: 1.75rem;
+                border-radius: 22px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'books:index' %}">📚 Bookstore</a>
+            <a class="navbar-brand" href="{% url 'books:index' %}">Bookstore</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,7 +263,7 @@
                         <a class="nav-link" href="{% url 'contactus:index' %}">Contact</a>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search books..." aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
@@ -77,42 +271,41 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main>
-        {% block content %}
-        {% endblock %}
+    <main class="page-shell">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="row">
+            <div class="row g-4">
                 <div class="col-md-4">
-                    <h5>Bookstore</h5>
-                    <p>Your one-stop destination for all your reading needs. Discover new worlds through books.</p>
+                    <h5 class="fw-bold">Bookstore</h5>
+                    <p class="mb-0">A clean and welcoming place to explore books, discover authors, and manage your library with ease.</p>
                 </div>
                 <div class="col-md-4">
-                    <h5>Quick Links</h5>
+                    <h5 class="fw-bold">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'books:index' %}" class="text-light">Books</a></li>
-                        <li><a href="{% url 'authors:index' %}" class="text-light">Authors</a></li>
-                        <li><a href="{% url 'aboutus:index' %}" class="text-light">About Us</a></li>
-                        <li><a href="{% url 'contactus:index' %}" class="text-light">Contact</a></li>
+                        <li class="mb-2"><a href="{% url 'books:index' %}">Books</a></li>
+                        <li class="mb-2"><a href="{% url 'authors:index' %}">Authors</a></li>
+                        <li class="mb-2"><a href="{% url 'aboutus:index' %}">About Us</a></li>
+                        <li><a href="{% url 'contactus:index' %}">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h5>Contact Info</h5>
-                    <p>📧 info@bookstore.com<br>📞 +1 (555) 123-4567<br>📍 123 Book Street, Reading City</p>
+                    <h5 class="fw-bold">Contact Info</h5>
+                    <p class="mb-0">info@bookstore.com<br>+1 (555) 123-4567<br>123 Book Street, Reading City</p>
                 </div>
             </div>
-            <hr>
-            <div class="text-center">
-                <p>&copy; 2024 Bookstore. All rights reserved.</p>
+            <hr class="border-secondary-subtle my-4">
+            <div class="text-center small">
+                <p class="mb-0">&copy; 2024 Bookstore. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

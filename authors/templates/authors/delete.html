@@ -1,13 +1,22 @@
 {% extends 'books/base.html' %}
 
 {% block content %}
-<h1>Delete Author</h1>
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <section class="surface-card p-4 p-md-5 text-center">
+            <span class="badge text-bg-danger mb-3">Danger Zone</span>
+            <h1 class="section-title">Delete Author</h1>
+            <p class="content-copy mb-4">Are you sure you want to continue? The delete behavior is unchanged; this page now simply makes the action clearer.</p>
 
-<p>Are you sure?</p>
-
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-</form>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="d-flex justify-content-center flex-wrap gap-2">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a href="{% url 'authors:index' %}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
 
 {% endblock %}

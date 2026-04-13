@@ -5,16 +5,25 @@ Create Book
 {% endblock %}
 
 {% block content %}
-    <h1>Create Book</h1>
+    <section class="page-hero">
+        <span class="badge-soft mb-3">New Entry</span>
+        <h1 class="section-title">Create Book</h1>
+        <p class="section-subtitle">Fill in the book details below. The structure and form fields stay untouched; only the presentation has been improved.</p>
+    </section>
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="surface-card p-4 p-md-5">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
 
-        <button type="submit">Save</button>
-    </form>
-
-    <br>
-
-    <a href="{% url 'books:index' %}">Back</a>
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <button type="submit" class="btn btn-brand">Save</button>
+                        <a href="{% url 'books:index' %}" class="btn btn-outline-secondary">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

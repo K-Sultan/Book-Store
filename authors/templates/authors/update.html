@@ -1,13 +1,26 @@
 {% extends 'books/base.html' %}
 
 {% block content %}
-<h1>Update Author</h1>
+<section class="page-hero">
+    <span class="badge-soft mb-3">Edit Author</span>
+    <h1 class="section-title">Update Author</h1>
+    <p class="section-subtitle">Modify the author information with the same form and request flow already implemented in the application.</p>
+</section>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="surface-card p-4 p-md-5">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
 
-    <button type="submit">Update</button>
-</form>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    <button type="submit" class="btn btn-brand">Update</button>
+                    <a href="{% url 'authors:index' %}" class="btn btn-outline-secondary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
